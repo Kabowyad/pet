@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restaurant
+  labels:
+    app: restaurant
+spec:
+  selector:
+    matchLabels:
+      app: restaurant
+  template:
+    metadata:
+      labels:
+        app: restaurant
+    spec:
+      containers:
+        - name: restaurant
+          image: pet/restaurant:1.1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: restaurant
+  labels:
+    app: restaurant
+    spring-boot: "true"
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+  selector:
+    app: restaurant

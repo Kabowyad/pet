@@ -18,6 +18,7 @@ ext {
 
 dependencies {
     compile "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
+    compile "io.github.resilience4j:resilience4j-feign:${resilience4jVersion}"
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '3.0.2'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter'
