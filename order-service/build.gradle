@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management'
     id 'java'
 }
+
 group 'com.yan.micro'
 version '0.0.1-SNAPSHOT'
 
@@ -11,20 +12,17 @@ repositories {
     maven { url 'https://repo.spring.io/milestone' }
 }
 
-ext {
-    springCloudVersion = '2020.0.0'
-    resilience4jVersion = '1.7.0'
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2020.0.1"
+    }
 }
 
 dependencies {
-    compile "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
-    compile "io.github.resilience4j:resilience4j-feign:${resilience4jVersion}"
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '3.0.2'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-config-client', version: '3.0.3'
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: '3.0.0-RC1'
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '3.0.2'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.springframework.cloud:spring-cloud-starter-config'
+    compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    compile 'org.springframework.boot:spring-boot-starter'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.cloud:spring-cloud-starter-kubernetes-all:1.1.9.RELEASE'
 }
